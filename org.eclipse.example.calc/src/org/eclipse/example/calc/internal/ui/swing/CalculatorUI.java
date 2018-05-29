@@ -19,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 import javax.swing.border.TitledBorder;
 
@@ -52,6 +53,11 @@ public class CalculatorUI extends JFrame implements TextProvider,
 	}
 
 	public CalculatorUI() {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		calculator = new Calculator(this);
 		setupGUI();
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -69,6 +75,8 @@ public class CalculatorUI extends JFrame implements TextProvider,
 		setupCommandButtons();
 
 		pack();
+		
+		setLocationRelativeTo(null);
 	}
 
 	private void setupDisplay(Container c) {
